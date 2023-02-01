@@ -1,7 +1,7 @@
 # File containing functions without decorators
 
 from functools import wraps
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import redirect, session
 from flask_session import Session
 from cs50 import SQL
 
@@ -135,30 +135,24 @@ def calculateprice(initialprices, ranking):
     if difference_f1 == 0:
         maxprice = userscore_factor1
         return maxprice
-    print("difference_f1: " + str(difference_f1))
+    
     # Calculate difference between user's scores and competition's scores in factor 2
     difference_f2 = userscore_factor2 - compscore_factor2
-    print("difference_f2: " + str(difference_f2))
     # Calculate difference between user's scores and competition's scores in factor 3
     difference_f3 = userscore_factor3 - compscore_factor3
-    print("difference_f3: " + str(difference_f3))
     
     # Calculating difference between proposed prices
     price_user = initialprices[0]["priceyou"]
     price_comp = initialprices[0]["pricecomp"]
     difference_price = price_user - price_comp
-    print("difference_price: " + str(difference_price))
+    
     # Calculating the value of one utility unit
     util_value = difference_price / difference_f1
-    print("util_value: " + str(util_value))
+    
     # Check balance in scores - who has more scores in total
     scores_balance = difference_f1 + difference_f2 + difference_f3
-    print("scores_balance: " + str(scores_balance))
-    print(ranking)
-    print(ranking_scores)
+    
     # Final maximal competitive price
     max_price = price_comp + (util_value * scores_balance)
-    print(util_value * scores_balance)
-    print(max_price)
     
     return max_price
