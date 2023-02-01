@@ -1,0 +1,9 @@
+ast
+cs50
+Flask
+Flask-Session
+functools
+hashlib
+random
+requests
+werkzeug.security
