@@ -1,0 +1,43 @@
+nav .navbar-brand {
+    font-size: xx-large;
+}
+
+.nav-item .nav-link {
+    color: antiquewhite;
+}
+
+.nav-item .nav-link:hover {
+    color: rgb(177, 177, 177);
+}
+
+div .navbar-brand .white {
+    color: rgb(255, 254, 253);
+}
+
+div .navbar-brand .white:hover {
+    color: rgb(207, 207, 207);
+}
+
+.border-3 {
+    border: 3px;
+    padding: 10px;
+}
+
+.items {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item {
+    user-select: none;
+}
+
+.items .w-25 {
+    min-width: 210px;
+}
+
+.indexreadme {
+    list-style: none;
+}

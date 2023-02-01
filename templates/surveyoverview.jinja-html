@@ -1,0 +1,102 @@
+{% extends "layout.jinja-html" %}
+
+{% block title %}
+    Survey overview
+{% endblock %}
+
+{% block main %}
+    <h3>Sort options from the best to the worst.</h3>
+    <h4>At the top place the option you would be the most likely to buy, and at the very bottom place the one you would be the least likely to buy.</h4>
+    <h5>Just drag and drop the elements to have them sorted!</h5>
+    <!-- TEST !-->
+    <!-- h5><span id="testID"></span></h5> !-->
+    <form method="POST" id="ranking" action="/answersubmitted">
+    <input type="submit" class="btn btn-primary" value="Submit survey">
+        <!-- hidden input storing default position of elements 
+            but also it receives new position from jQuery and transfers it to Flask endpoint
+            via "POST" method in form !-->
+        <input type="hidden" name="rankingarray" id="rankingarray" value="{{ random }}">
+        <!-- hidden input storing survey hashed_id !-->
+        <input type="hidden" name="surveyid" id="surveyid" value="{{ surveyid }}">
+        <ul class="items sortable-list">
+            <li class="item w-25" id="{{ 'item' + random[0]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":"}}</strong>
+                        {{ comb[random[0]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="item w-25" id="{{ 'item' + random[1]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":" }}</strong>
+                        {{ comb[random[1]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="item w-25" id="{{ 'item' + random[2]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":" }}</strong>
+                        {{ comb[random[2]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="item w-25" id="{{ 'item' + random[3]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":" }}</strong>
+                        {{ comb[random[3]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="item w-25" id="{{ 'item' + random[4]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":" }}</strong>
+                        {{ comb[random[4]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="item w-25" id="{{ 'item' + random[5]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":" }}</strong>
+                        {{ comb[random[5]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="item w-25" id="{{ 'item' + random[6]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":" }}</strong>
+                        {{ comb[random[6]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="item w-25" id="{{ 'item' + random[7]|string }}">
+                <div class="mt-1 border border-3 border-dark rounded">
+                    {% for i in range (3) %}
+                        <strong>{{ factors_list[i] + ":" }}</strong>
+                        {{ comb[random[7]][i] }}
+                        <br>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="{{ url_for('static', filename='dragscript.js') }}"></script>
+{% endblock %}

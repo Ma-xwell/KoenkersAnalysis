@@ -1,0 +1,78 @@
+{% extends "layout.jinja-html" %}
+
+{% block title %}
+    Home page
+{% endblock %}
+
+{% block main %}
+    <h1>Find the best price for your product!</h1>
+    <h2>Insert two factors for both yours and your competition's product and assign the values below</h2>
+    <p><i>only a-z, A-Z and 0-9 characters are allowed <br>prices cannot be identical</i></p>
+    <form id="formNames">
+        <div class="mb-3">
+            <label for="name1">Name of the first factor</label>
+            <br>
+            <p>Price</p>
+        </div>
+        
+         <div class="mb-3">
+            <label for="name2">Name of the second factor (don't use space)</label>
+            <br>
+            <input type="text" id="name2" maxlength="20" pattern="[a-zA-Z0-9]+" required>
+        </div>
+         <div class="mb-3">
+            <label for="name3">Name of the third factor (don't use space)</label>
+            <br>
+            <input type="text" id="name3" maxlength="20" pattern="[a-zA-Z0-9]+" required>
+        </div>
+        <button class="btn btn-primary mt-2 mb-3" type="Submit">Set factors' names</button>
+    </form>
+
+    <form method="post" action="/createsurvey" id="formFactors">
+    <div class="row">
+        <div class="col">
+        <h3>You</h3>
+            <div class="mb-3">
+                <label for="factor1">Potential price (use "." as decimal point)</label>
+                <br>
+                <input id="priceyou" name="priceyou" type="text" maxlength="20" pattern="^[0-9]+(\.[0-9]{1,2})?$" required>
+            </div>
+            <div class="mb-3">
+                <label for="factor2" class="newname2"><i>insert the factor name first</i></label>
+                <br>
+                <input id="factor2you_value" name="factor2_youvalue" type="text" maxlength="20" pattern="[a-zA-Z0-9\s]+" required>
+                <input type="hidden" id="_name2" name="_name2" required>
+            </div>
+            <div class="mb-3">
+                <label for="factor3" class="newname3"><i>insert the factor name first</i></label>
+                <br>
+                <input id="factor3you_value" name="factor3_youvalue" type="text" maxlength="20" pattern="[a-zA-Z0-9\s]+" required>
+                <input type="hidden" id="_name3" name="_name3" required>
+            </div>
+        </div>
+        <div class="col">
+        <h3>Competition</h3>
+            <div class="mb-3">
+                <label for="factor1">Actual price (use "." as decimal point)</label>
+                <br>
+                <input id="pricecomp" name="pricecomp" type="text" maxlength="20" pattern="^[0-9]+(\.[0-9]{1,2})?$" required>
+            </div>
+            <div class="mb-3">
+                <label for="factor2" class="newname2"><i>insert the factor name first</i></label>
+                <br>
+                <input id="factor2comp_value" name="factor2_compvalue" type="text" maxlength="20" pattern="[a-zA-Z0-9\s]+" required>
+            </div>
+            <div class="mb-3">
+                <label for="factor3" class="newname3"><i>insert the factor name first</i></label>
+                <br>
+                <input id="factor3comp_value" name="factor3_compvalue" type="text" maxlength="20" pattern="[a-zA-Z0-9\s]+" required>
+            </div>
+        </div>
+    </div>
+    <button id="submit" class="btn btn-primary mt-2" type="Submit">Submit</button>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

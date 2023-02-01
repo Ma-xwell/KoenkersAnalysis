@@ -1,0 +1,53 @@
+{% extends "layout.jinja-html" %}
+
+{% block title %}
+    Your surveys
+{% endblock%}
+
+{% block main %}
+    <h2 class="mt-2">Below you can see the results of your surveys. Explore the number of submissions, minimal average price that occured, same as maximal.</h2>
+    <h3 class="mt-1"><strong>Average price should be the main benchmark</strong> for setting up the most competitive price for your product as it is based on all the submissions.</h3>
+    <br>
+    {% if nosurveys == 0 %}
+        <table class="table mt-1">
+            <thead>
+                <tr>
+                    <th scope="col">Survey id</th>
+                    <th scope="col">Number of submissions</th>
+                    <th scope="col">Min. average price</th>
+                    <th scope="col">Average price</th>
+                    <th scope="col">Max. average price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range((surveydata)|length) %}
+                    <tr>
+                        <td><strong>{{ surveydata[i]["hash_id"] }}</strong></td>
+                        <td>{{ surveydata[i]["answercount"] }}</td>
+                        <td>{% if (surveydata[i]["min_price"]) >= 0 %} 
+                                {{ '%0.2f'|format(surveydata[i]["min_price"]|float) }}
+                            {% else %}
+                                Not competitive. Price below 0.
+                            {% endif %}
+                        </td>
+                        <td>{% if (surveydata[i]["avg_price"]) >= 0 %} 
+                                <strong>{{ '%0.2f'|format(surveydata[i]["avg_price"]|float) }}</strong>
+                            {% else %}
+                                Not competitive. Price below 0.
+                            {% endif %}
+                        </td>
+                        <td>{% if (surveydata[i]["max_price"]) >= 0 %} 
+                                {{ '%0.2f'|format(surveydata[i]["max_price"]|float) }}
+                            {% else %}
+                                Not competitive. Price below 0.
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif nosurveys == 1 %}
+        <h3 class="mt-5"><strong>You have no surveys yet!</strong></h3>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "layout.jinja-html" %}
+
+{% block title %}
+    Surveys details
+{% endblock %}
+
+{% block main %}
+    <h2 class="mt-2">Below you can see the details of your surveys.</h2>
+    {% if nosurveys == 0 %}
+        <table class="table mt-1">
+            <thead>
+                <tr>
+                    <th scope="col">Survey id</th>
+                    <th scope="col">You</th>
+                    <th scope="col">Competition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range((details)|length) %}
+                    <tr>
+                        <td class="align-middle"><strong>{{ details[i]["hash_id"] }}</strong></td>
+                        <td>
+                            <strong>Potential price</strong><br>{{ details[i]["priceyou"] }} <br>
+                            <strong>{{ details[i]["factor2_name"] }}</strong> <br> {{ details[i]["factor2_youvalue"] }} <br>
+                            <strong>{{ details[i]["factor3_name"] }}</strong> <br> {{ details[i]["factor3_youvalue"] }} 
+                        </td>
+                        <td>
+                            <strong>Price</strong><br>{{ details[i]["pricecomp"] }} <br>
+                            <strong>{{ details[i]["factor2_name"] }}</strong> <br> {{ details[i]["factor2_compvalue"] }} <br>
+                            <strong>{{ details[i]["factor3_name"] }}</strong> <br> {{ details[i]["factor3_compvalue"] }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif nosurveys == 1 %}
+        <h3 class="mt-5"><strong>You have no surveys yet!</strong></h3>
+    {% endif %}
+{% endblock %}
