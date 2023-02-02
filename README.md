@@ -1,5 +1,5 @@
 # Simple conjoint analysis
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://www.youtube.com/watch?v=_hOGk2BJSfE
 #### Description:
 
 ## **Main purpose**
